@@ -35,8 +35,8 @@ main:
 while:
 	cmp eax, [arr_len]
 	jz end
-	mov ebx, x[eax*4]
-	sub ebx, y[eax*4]
+	mov ebx, [x+eax*4]
+	sub ebx, [y+eax*4]
 	mov ecx, [result]
     	add ecx, ebx
 	mov [result], ecx
