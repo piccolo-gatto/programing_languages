@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.assertThrows
 import java.lang.IllegalArgumentException
 
-class TestInterpreter {
+public class TestInterpreter {
     private lateinit var interpreter: Interpreter
 
 
@@ -16,7 +16,7 @@ class TestInterpreter {
 
     }
     @Test
-    fun testEmptyCode() {
+    fun testEmptyCode() : Unit {
         val code = """
            BEGIN
            END.
@@ -27,7 +27,7 @@ class TestInterpreter {
     }
 
     @Test
-    fun testSimpleCode() {
+    fun testSimpleCode() : Unit {
         val code = """
             BEGIN
 	            x := 2 + 3 * (2 + 3);
@@ -40,7 +40,7 @@ class TestInterpreter {
     }
 
     @Test
-    fun testInnerCode() {
+    fun testInnerCode() : Unit {
         val code = """
             BEGIN
                 y: = 2;
@@ -59,7 +59,7 @@ class TestInterpreter {
     }
 
     @Test
-    fun testUnarCode() {
+    fun testUnarCode() : Unit {
         val code = """
             BEGIN
                 y := -3;
@@ -72,7 +72,7 @@ class TestInterpreter {
     }
 
     @Test
-    fun testInvalidEnd() {
+    fun testInvalidEnd() : Unit {
         val code = """
             BEGIN
 	            x := 2 + 3 * (2 + 3);
@@ -82,7 +82,7 @@ class TestInterpreter {
     }
 
     @Test
-    fun testUnknownVar() {
+    fun testUnknownVar() : Unit {
         val code = """
             BEGIN
 	            x := 2;
@@ -93,7 +93,7 @@ class TestInterpreter {
     }
 
     @Test
-    fun testInvalidBinOperator() {
+    fun testInvalidBinOperator() : Unit {
         val code = """
             BEGIN
                 y := 2 \ 4;
@@ -103,7 +103,7 @@ class TestInterpreter {
     }
 
     @Test
-    fun testInvalidUnarOperator() {
+    fun testInvalidUnarOperator() : Unit {
         val code = """
             BEGIN
                 y := *4;
@@ -113,7 +113,7 @@ class TestInterpreter {
     }
 
     @Test
-    fun testInvalidLexer() {
+    fun testInvalidLexer() : Unit {
         val code = """
             BEGIN
                 x - 3;
@@ -123,7 +123,7 @@ class TestInterpreter {
     }
 
     @Test
-    fun testInvalidVariable() {
+    fun testInvalidVariable() : Unit {
         val code = """
             BEGIN
                 x := -;
@@ -133,7 +133,7 @@ class TestInterpreter {
     }
 
     @Test
-    fun testInvalidAssign() {
+    fun testInvalidAssign() : Unit {
         val code = """
             BEGIN
                 x :^ 3;
@@ -143,7 +143,7 @@ class TestInterpreter {
     }
 
     @Test
-    fun testInvalidOrder() {
+    fun testInvalidOrder() : Unit {
         val code = """
             BEGIN
                 Ba := 2
@@ -153,7 +153,7 @@ class TestInterpreter {
     }
 
     @Test
-    fun testInvalidBegin() {
+    fun testInvalidBegin() : Unit {
         val code = """
 	            x := 2 + 3 * (2 + 3);
                 y := 2 / 2 - 2 + 3 * ((1 + 1) + (1 + 1));
@@ -163,7 +163,7 @@ class TestInterpreter {
     }
 
     @Test
-    fun testInvalidToken() {
+    fun testInvalidToken() : Unit {
         val code = """
              BEGIN
                 x := 2 + 3; 
@@ -174,7 +174,7 @@ class TestInterpreter {
 
 
     @Test
-    fun test_main() {
+    fun test_main() : Unit {
         assertEquals(0, main())
     }
 }
