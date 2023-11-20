@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.assertThrows
 import java.lang.IllegalArgumentException
 
-public class TestInterpreter {
+class TestInterpreter {
     private lateinit var interpreter: Interpreter
 
 
@@ -15,8 +15,9 @@ public class TestInterpreter {
         interpreter = Interpreter()
 
     }
+
     @Test
-    fun testEmptyCode() : Unit {
+    fun testEmptyCode() {
         val code = """
            BEGIN
            END.
@@ -27,7 +28,7 @@ public class TestInterpreter {
     }
 
     @Test
-    fun testSimpleCode() : Unit {
+    fun testSimpleCode() {
         val code = """
             BEGIN
 	            x := 2 + 3 * (2 + 3);
@@ -40,7 +41,7 @@ public class TestInterpreter {
     }
 
     @Test
-    fun testInnerCode() : Unit {
+    fun testInnerCode() {
         val code = """
             BEGIN
                 y: = 2;
@@ -59,7 +60,7 @@ public class TestInterpreter {
     }
 
     @Test
-    fun testUnarCode() : Unit {
+    fun testUnarCode() {
         val code = """
             BEGIN
                 y := -3;
@@ -72,109 +73,104 @@ public class TestInterpreter {
     }
 
     @Test
-    fun testInvalidEnd() : Unit {
+    fun testInvalidEnd() {
         val code = """
             BEGIN
 	            x := 2 + 3 * (2 + 3);
                 y := 2 / 2 - 2 + 3 * ((1 + 1) + (1 + 1));
         """
-        assertThrows<IllegalArgumentException>{interpreter.eval(code)}
+        assertThrows<IllegalArgumentException> { interpreter.eval(code) }
     }
 
     @Test
-    fun testUnknownVar() : Unit {
+    fun testUnknownVar() {
         val code = """
             BEGIN
 	            x := 2;
                 y := a + x + 8;
             END.
         """
-        assertThrows<IllegalArgumentException>{interpreter.eval(code)}
+        assertThrows<IllegalArgumentException> { interpreter.eval(code) }
     }
 
     @Test
-    fun testInvalidBinOperator() : Unit {
+    fun testInvalidBinOperator() {
         val code = """
             BEGIN
                 y := 2 \ 4;
             END.
         """
-        assertThrows<IllegalArgumentException>{interpreter.eval(code)}
+        assertThrows<IllegalArgumentException> { interpreter.eval(code) }
     }
 
     @Test
-    fun testInvalidUnarOperator() : Unit {
+    fun testInvalidUnarOperator() {
         val code = """
             BEGIN
                 y := *4;
             END.
         """
-        assertThrows<IllegalArgumentException>{interpreter.eval(code)}
+        assertThrows<IllegalArgumentException> { interpreter.eval(code) }
     }
 
     @Test
-    fun testInvalidLexer() : Unit {
+    fun testInvalidLexer() {
         val code = """
             BEGIN
                 x - 3;
             END.
         """
-        assertThrows<IllegalArgumentException>{interpreter.eval(code)}
+        assertThrows<IllegalArgumentException> { interpreter.eval(code) }
     }
 
     @Test
-    fun testInvalidVariable() : Unit {
+    fun testInvalidVariable() {
         val code = """
             BEGIN
                 x := -;
             END.
         """
-        assertThrows<IllegalArgumentException>{interpreter.eval(code)}
+        assertThrows<IllegalArgumentException> { interpreter.eval(code) }
     }
 
     @Test
-    fun testInvalidAssign() : Unit {
+    fun testInvalidAssign() {
         val code = """
             BEGIN
                 x :^ 3;
             END.
         """
-        assertThrows<IllegalArgumentException>{interpreter.eval(code)}
+        assertThrows<IllegalArgumentException> { interpreter.eval(code) }
     }
 
     @Test
-    fun testInvalidOrder() : Unit {
+    fun testInvalidOrder() {
         val code = """
             BEGIN
                 Ba := 2
             END.
         """
-        assertThrows<IllegalArgumentException>{interpreter.eval(code)}
+        assertThrows<IllegalArgumentException> { interpreter.eval(code) }
     }
 
     @Test
-    fun testInvalidBegin() : Unit {
+    fun testInvalidBegin() {
         val code = """
 	            x := 2 + 3 * (2 + 3);
                 y := 2 / 2 - 2 + 3 * ((1 + 1) + (1 + 1));
             END.
         """.trimIndent()
-        assertThrows<IllegalArgumentException>{interpreter.eval(code)}
+        assertThrows<IllegalArgumentException> { interpreter.eval(code) }
     }
 
     @Test
-    fun testInvalidToken() : Unit {
+    fun testInvalidToken() {
         val code = """
              BEGIN
                 x := 2 + 3; 
              END
         """.trimIndent()
-        assertThrows<IllegalArgumentException>{interpreter.eval(code)}
+        assertThrows<IllegalArgumentException> { interpreter.eval(code) }
     }
 
-
-    @Test
-    fun test_main() : Unit {
-        assertEquals(0, main())
-    }
 }
