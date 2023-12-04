@@ -57,7 +57,7 @@ class Ploc<ValueType>(private val specialHashMap: SpecialHashMap<ValueType>) {
     }
 
     private fun parseParam(params: String): List<String> {
-        return params.replace(Regex("[()]"), "").split(Regex("[A-Za-zА-Яа-я,]"))
+        return params.replace(Regex("[()]"), "").split(Regex("[A-Za-zА-Яа-я,:;_]"))
     }
 
     private fun parseOperator(operators: String): String {

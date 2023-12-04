@@ -55,6 +55,11 @@ class TestSpecialHashMap {
         assertEquals(hashMapOf("(1, 5)" to 100, "(5, 5)" to 200, "(10, 5)" to 300), map.ploc[">0, >0"])
         assertEquals(hashMapOf("(10, 5)" to 300), map.ploc[">=10, >0"])
         assertEquals(hashMapOf("(1, 5, 3)" to 400), map.ploc["<5, >=5, >=3"])
+        assertEquals(hashMapOf("(1, 5, 3)" to 400), map.ploc["<5A >=5A >=3"])
+        assertEquals(hashMapOf("(1, 5, 3)" to 400), map.ploc["<5f >=5f >=3"])
+        assertEquals(hashMapOf("(1, 5, 3)" to 400), map.ploc["<5: >=5: >=3"])
+        assertEquals(hashMapOf("(1, 5, 3)" to 400), map.ploc["<5; >=5; >=3"])
+        assertEquals(hashMapOf("(1, 5, 3)" to 400), map.ploc["<5_ >=5_ >=3"])
     }
 
     @Test
