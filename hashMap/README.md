@@ -12,4 +12,5 @@ make test
 ```
 
 ## Покрытие тестов
-![image](https://github.com/piccolo-gatto/programing_languages/assets/108530800/bf9d37b2-72cc-438d-aba7-31283e7ee65c)
+![image](https://github.com/piccolo-gatto/programing_languages/assets/108530800/86a66f69-6280-4e58-b2af-6a2832c2e463)
+
