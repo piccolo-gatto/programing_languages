@@ -2,14 +2,14 @@ package SpecialHashMap
 
 
 class Ploc<ValueType>(private val specialHashMap: SpecialHashMap<ValueType>) {
-    operator fun get(condition: String): Map<String, ValueType> {
-        val conditions = parseParam(condition)
+    operator fun get(requirement: String): Map<String, ValueType> {
+        val requirements = parseParam(requirement)
         return specialHashMap.filterKeys {
             val splitKey = parseParam(it)
-            if (conditions.size == splitKey.size) {
-                for (i in 0..conditions.size - 1) {
-                    val operator = parseOperator(conditions[i])
-                    val rightNumber = conditions[i].replace(operator, "").toDouble()
+            if (requirements.size == splitKey.size) {
+                for (i in 0..requirements.size - 1) {
+                    val operator = parseOperator(requirements[i])
+                    val rightNumber = requirements[i].replace(operator, "").toDouble()
                     val leftNumber = splitKey[i].toDouble()
                     when (operator) {
                         ">" -> {
